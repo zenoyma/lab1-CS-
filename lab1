@@ -1,0 +1,65 @@
+#define _USE_MATH_DEFINES
+#include <iostream>
+#include <cmath>
+#include <format>
+
+
+using namespace std;
+
+void info() {
+	cout << "The author of the program is Oleksandr Bak, K-15." << endl;
+	cout << "This program calculates the expression according to the specified user X. Variant 74." << endl;
+}
+
+double input() {
+	double x;
+	cout << "Please, enter x (except 7, -13, -15): ";
+	cin >> x;
+	if (cin.fail()) {
+		throw runtime_error("wrong input");
+	}
+	return x;
+}
+
+double f(double x) {
+	return (sin(2 / 69.0) - ((4 * exp(1)) / (62 * M_PI)) * (14.0 / ((x - 7) * (x + 13))) + (11 * sin(x - 12)) - (15.0 / (x + 15)));
+}
+
+bool check_domain(double x) {
+	return x != 7 and x != -13 and x != -15;
+}
+
+int main() {
+	info();
+	
+	try 
+	{
+		double x = input();
+		cout << endl;
+		cout << "***** do calculations ...";
+		double result; 
+		if (check_domain(x)) {
+			result = f(x);
+		}
+		else {
+			result = NAN;
+		}
+		
+		cout << " done" << endl;
+		cout << format("for x = {:.7f}", x) << endl;
+		cout << "result = ";
+		if (result == result) {
+			cout << format("{:.8f}", result) << endl;
+		}
+		else {
+			cout << "undefined" << endl;
+		}
+	
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+	}
+	
+	return 0;
+}
+
